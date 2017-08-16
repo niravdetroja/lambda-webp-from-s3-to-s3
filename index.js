@@ -94,6 +94,12 @@ exports.handler = function (event, context) {
 										Key: params.Key.replace(path.extname(params.Key), '.webp'),
 										Body: fileStream
 									};
+									fileStream.on('end', function() {
+										fs.unlink("/tmp/"+webp_file, function() {
+											if(err) return console.log("File Delete Error : "+err);
+											console.log("file deleted successfully : /tmp/"+webp_file);
+										});
+									});
 									s3_dest.putObject(putParams, function(putErr, putData){
 										if(putErr){
 											context.fail('Error Upload File : '+"/tmp/"+webp_file);
@@ -103,10 +109,7 @@ exports.handler = function (event, context) {
 											context.succeed('data: ' + webp_file);
 										}
 									});
-									fs.unlink("/tmp/"+webp_file,function(err){
-										if(err) return console.log("File Delete Error : "+err);
-										console.log("file deleted successfully : /tmp/"+webp_file);
-									}); 
+									
 								}
 							});
 													
