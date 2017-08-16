@@ -1,0 +1,17 @@
+{
+  "name": "jpgtowebp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.99.0",
+    "path": "^0.12.7",
+    "webp-converter": "^2.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nirav Detroja",
+  "license": "ISC"
+}
